@@ -291,7 +291,7 @@ MonoBehaviour:
   spawner: {fileID: 1877203399}
   scoreText: {fileID: 960257706}
   fadeImage: {fileID: 1697988582}
-  gameOverScreen: {fileID: 0}
+  gameOverScreen: {fileID: 1535903013}
 --- !u!4 &304636680
 Transform:
   m_ObjectHideFlags: 0
@@ -301,7 +301,7 @@ Transform:
   m_GameObject: {fileID: 304636678}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
