@@ -809,6 +809,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &868483553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 868483555}
+  - component: {fileID: 868483554}
+  m_Layer: 0
+  m_Name: GPS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &868483554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868483553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51c7d595938893468b60e348df0ab1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userLat: 0
+  userLon: 0
+--- !u!4 &868483555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868483553}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1413.3673, y: 541.20416, z: 6.773055}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &960257705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,6 +1985,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dcea24460a752d48868c6a8632244a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Emdrup:
+  - {fileID: 58992546124903626, guid: 2ea26aadd7caaa441ace461c992f26f2, type: 3}
+  - {fileID: 5794707091019252303, guid: ba8073eccfb5c6d4e8f00fad9f9620cb, type: 3}
+  - {fileID: 1470209383879520719, guid: 43ab47e9124714246890ec02cfc855f8, type: 3}
+  - {fileID: 955040076083653443, guid: f751a5fa7d682c94992bda85b71510c0, type: 3}
+  - {fileID: 3979692811764503188, guid: fb985b0a02706884d89611858d097f91, type: 3}
   fruitPrefabs:
   - {fileID: 7044755403789075396, guid: b0bf7e4645c7687469895ef7e6e46852, type: 3}
   - {fileID: 7044755403789075396, guid: 6b9dd41935f79c74b81b43b42cb634d7, type: 3}
@@ -2036,3 +2088,4 @@ SceneRoots:
   - {fileID: 705301588}
   - {fileID: 835113017}
   - {fileID: 304636680}
+  - {fileID: 868483555}

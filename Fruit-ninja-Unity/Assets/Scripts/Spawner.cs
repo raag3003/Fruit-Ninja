@@ -4,8 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Spawner : MonoBehaviour
 {
+    private TrackingGPS gps;
     private Collider spawnArea;
 
+    public GameObject[] Emdrup;
     public GameObject[] fruitPrefabs;
     public GameObject bombPrefab;
     [Range(0f, 1f)]
@@ -25,6 +27,7 @@ public class Spawner : MonoBehaviour
     private void Awake()
     {
         spawnArea = GetComponent<Collider>();
+        gps = FindObjectOfType<TrackingGPS>();
     }
 
     private void OnEnable()
@@ -43,7 +46,15 @@ public class Spawner : MonoBehaviour
 
         while (enabled)
         {
-            GameObject prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
+            GameObject prefab;
+
+            if (gps.IsWithinRadius(gps.userLat, gps.userLon, 55.72309f, 12.53921f, 1170))
+            {
+                prefab = Emdrup[Random.Range(0, Emdrup.Length)];
+            } else
+            {
+                prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
+            }
 
             if (Random.value < bombChance)
             {
