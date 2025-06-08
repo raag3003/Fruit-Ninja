@@ -56,7 +56,7 @@ public class Blade : MonoBehaviour
         {
             // Vector3 position = mainCamera.ScreenToWorldPoint(Input.mousePosition); // Virker kun med musemakøren ikke fingre.
             float sliceDepth = 2f; // tillader slice af object væk fra player
-            Vector3 position = mainCamera.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, mainCamera.nearClipPlane));
+            Vector3 position = mainCamera.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, sliceDepth));
             //position.z = 0f;
             transform.position = position;
 
