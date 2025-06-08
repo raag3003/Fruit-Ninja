@@ -55,8 +55,9 @@ public class Blade : MonoBehaviour
         if (Input.touchCount > 0)
         {
             // Vector3 position = mainCamera.ScreenToWorldPoint(Input.mousePosition); // Virker kun med musemakøren ikke fingre.
-            Vector3 position = mainCamera.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, mainCamera.nearClipPlane));
-            position.z = 0f;
+            float sliceDepth = 2f; // tillader slice af object væk fra player
+            Vector3 position = mainCamera.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, sliceDepth));
+            //position.z = 0f;
             transform.position = position;
 
             slicing = true;
