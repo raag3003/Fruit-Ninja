@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Image fadeImage;
     [SerializeField] private GameObject gameOverScreen;
+    public int health = 3;
 
+    public Spawner spawnerScript;
     public int score { get; private set; } = 0;
 
     private void Awake()
@@ -41,6 +43,14 @@ public class GameManager : MonoBehaviour
         NewGame();
     }
 
+    private void Update()
+    {
+        if (health == 0)
+        {
+            Explode();
+        }
+    }
+
     public void NewGame()
     {
         gameOverScreen.SetActive(false);
@@ -52,6 +62,7 @@ public class GameManager : MonoBehaviour
         spawner.enabled = true;
 
         score = 0;
+        spawnerScript.maxSpawnDelay = 2f;
         scoreText.text = score.ToString();
     }
 
