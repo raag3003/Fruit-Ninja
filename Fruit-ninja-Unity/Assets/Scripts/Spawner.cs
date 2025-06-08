@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 [RequireComponent(typeof(Collider))]
 public class Spawner : MonoBehaviour
@@ -23,6 +24,10 @@ public class Spawner : MonoBehaviour
     public float maxForce = 22f;
 
     public float maxLifetime = 5f;
+    public float spawnTime = 2f;
+
+    public GameManager gameManager;
+    public int lastDifficultyIncreaseScore = 0;
 
     private void Awake()
     {
@@ -40,6 +45,18 @@ public class Spawner : MonoBehaviour
         StopAllCoroutines();
     }
 
+    private void Update()
+    {
+
+
+        if (gameManager.score > 0 && gameManager.score % 10 == 0 && gameManager.score != lastDifficultyIncreaseScore)
+        {
+            IncreaseDifficulty();
+            lastDifficultyIncreaseScore = gameManager.score;
+            Debug.Log("Difficulty Increased");
+        }
+
+    }
     private IEnumerator Spawn()
     {
         yield return new WaitForSeconds(2f);
@@ -80,4 +97,13 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    void IncreaseDifficulty()
+    {
+        if(maxSpawnDelay > minSpawnDelay)
+        {
+            maxSpawnDelay = maxSpawnDelay - 0.1f;
+            bombChance = bombChance + 0.01f;
+        }
+
+    }
 }

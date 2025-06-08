@@ -6,6 +6,8 @@ public class Fruit : MonoBehaviour
     public GameObject whole;
     public GameObject sliced;
 
+    public Spawner spawner;
+
     private Rigidbody fruitRigidbody;
     private Collider fruitCollider;
     private ParticleSystem juiceEffect;
@@ -31,17 +33,25 @@ public class Fruit : MonoBehaviour
         sliced.SetActive(true);
         juiceEffect.Play();
 
-        // Rotate based on the slice angle
+        // Rotate the sliced parent to match the slice angle
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         sliced.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
         Rigidbody[] slices = sliced.GetComponentsInChildren<Rigidbody>();
 
-        // Add a force to each slice based on the blade direction
         foreach (Rigidbody slice in slices)
         {
+            // Copy velocity from whole fruit
             slice.linearVelocity = fruitRigidbody.linearVelocity;
+
+            // Add slice force at cut position
             slice.AddForceAtPosition(direction * force, position, ForceMode.Impulse);
+
+            // Add angular velocity to spin slice
+            Vector3 sliceToCut = slice.position - position;
+            Vector3 torqueAxis = Vector3.Cross(direction.normalized, sliceToCut.normalized);
+            float spinStrength = force * 5f;  // tweak this multiplier for spin intensity
+            slice.angularVelocity = torqueAxis * spinStrength;
         }
     }
 
