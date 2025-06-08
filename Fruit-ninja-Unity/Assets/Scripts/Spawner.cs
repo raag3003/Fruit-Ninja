@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -7,9 +6,6 @@ public class Spawner : MonoBehaviour
 {
     private TrackingGPS gps;
     private Collider spawnArea;
-
-    private Transform arCamera; // For the transform of the phone
-    public float spawnRadius = 2f; // distance from player
 
     public GameObject[] Emdrup;
     public GameObject[] fruitPrefabs;
@@ -32,7 +28,6 @@ public class Spawner : MonoBehaviour
     {
         spawnArea = GetComponent<Collider>();
         gps = FindObjectOfType<TrackingGPS>();
-        arCamera = Camera.main.transform;
     }
 
     private void OnEnable()
@@ -53,10 +48,6 @@ public class Spawner : MonoBehaviour
         {
             GameObject prefab;
 
-            // makes the fruit spawn in a circle around the player
-            float angle = Random.Range(0f, Mathf.PI * 2f);
-            Vector3 offset = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * spawnRadius;
-
             if (gps.IsWithinRadius(gps.userLat, gps.userLon, 55.72309f, 12.53921f, 1170))
             {
                 prefab = Emdrup[Random.Range(0, Emdrup.Length)];
@@ -70,28 +61,16 @@ public class Spawner : MonoBehaviour
                 prefab = bombPrefab;
             }
 
-            /*
             Vector3 position = new Vector3
             {
-                
-
-                 // The old spawn postion
                 x = Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
                 y = Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y),
                 z = Random.Range(spawnArea.bounds.min.z, spawnArea.bounds.max.z)
-                
             };
-            */
-            // New spawn positon
-            Vector3 spawnPosition = new Vector3(
-                arCamera.position.x + offset.x,
-                arCamera.position.y - 0.2f,
-                arCamera.position.z + offset.z
-                );
 
             Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(minAngle, maxAngle));
 
-            GameObject fruit = Instantiate(prefab, spawnPosition, rotation);
+            GameObject fruit = Instantiate(prefab, position, rotation);
             Destroy(fruit, maxLifetime);
 
             float force = Random.Range(minForce, maxForce);
