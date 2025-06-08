@@ -45,6 +45,18 @@ public class Spawner : MonoBehaviour
         StopAllCoroutines();
     }
 
+    private void Update()
+    {
+
+
+        if (gameManager.score > 0 && gameManager.score % 10 == 0 && gameManager.score != lastDifficultyIncreaseScore)
+        {
+            IncreaseDifficulty();
+            lastDifficultyIncreaseScore = gameManager.score;
+            Debug.Log("Difficulty Increased");
+        }
+
+    }
     private IEnumerator Spawn()
     {
         yield return new WaitForSeconds(2f);
