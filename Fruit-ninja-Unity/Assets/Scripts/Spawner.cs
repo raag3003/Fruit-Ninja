@@ -8,6 +8,8 @@ public class Spawner : MonoBehaviour
     private TrackingGPS gps;
     private Collider spawnArea;
 
+    
+
     public GameObject[] Emdrup;
     public GameObject[] fruitPrefabs;
     public GameObject bombPrefab;
@@ -63,6 +65,8 @@ public class Spawner : MonoBehaviour
 
         while (enabled)
         {
+            // Old version
+            
             GameObject prefab;
 
             if (gps.IsWithinRadius(gps.userLat, gps.userLon, 55.72309f, 12.53921f, 1170))
@@ -78,6 +82,7 @@ public class Spawner : MonoBehaviour
                 prefab = bombPrefab;
             }
 
+            // old position version
             Vector3 position = new Vector3
             {
                 x = Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
@@ -85,6 +90,9 @@ public class Spawner : MonoBehaviour
                 z = Random.Range(spawnArea.bounds.min.z, spawnArea.bounds.max.z)
             };
 
+            
+
+            // old version
             Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(minAngle, maxAngle));
 
             GameObject fruit = Instantiate(prefab, position, rotation);
@@ -94,6 +102,10 @@ public class Spawner : MonoBehaviour
             fruit.GetComponent<Rigidbody>().AddForce(fruit.transform.up * force, ForceMode.Impulse);
 
             yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
+            
+
+
+
         }
     }
 
