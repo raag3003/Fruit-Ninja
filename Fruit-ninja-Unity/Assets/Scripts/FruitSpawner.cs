@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.XR.ARFoundation;
+// using UnityEngine.XR.ARFoundation;
 
 public class FruitSpawner : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class FruitSpawner : MonoBehaviour
     public float minForce = 18f;
     public float maxForce = 22f;
 
-    public ARPlaneManager planeManager;
+    // public ARPlaneManager planeManager;
 
     void Start()
     {
@@ -22,10 +22,10 @@ public class FruitSpawner : MonoBehaviour
     IEnumerator WaitForPlaneAndSpawn()
     {
         // Wait until at least one detected plane exist
-        while (planeManager.trackables.count == 0)
+        /*while (planeManager.trackables.count == 0)
         {
             yield return null;
-        }
+        }*/
 
         // wait a little extra just to be safe
         yield return new WaitForSeconds(1f);

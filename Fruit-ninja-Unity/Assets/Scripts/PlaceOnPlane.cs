@@ -1,24 +1,24 @@
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
+// using UnityEngine.XR.ARFoundation;
+// using UnityEngine.XR.ARSubsystems;
 using System.Collections;
 using System.Collections.Generic;
 
 
-[RequireComponent(typeof(ARRaycastManager))]
+// [RequireComponent(typeof(ARRaycastManager))]
 public class PlaceOnPlane : MonoBehaviour
 {
     public GameObject placedPrefab;
 
     GameObject spawnedObject;
 
-    ARRaycastManager raycastManager;
-    List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    // ARRaycastManager raycastManager;
+    // List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     private void Awake()
     {
-        raycastManager = GetComponent<ARRaycastManager>();
+        // raycastManager = GetComponent<ARRaycastManager>();
     }
 
     private void Update()
@@ -28,7 +28,7 @@ public class PlaceOnPlane : MonoBehaviour
             return;
 
         // Check if the raycast hit any trackables
-        if (raycastManager.Raycast(Input.GetTouch(0).position, hits, TrackableType.PlaneWithinPolygon))
+        /*if (raycastManager.Raycast(Input.GetTouch(0).position, hits, TrackableType.PlaneWithinPolygon))
         {
             // Raycast hits are sorted by distance, so the first hit means the closest
             // Maybe means that if there are mulitple planes overlapping the closest will prevail
@@ -50,6 +50,6 @@ public class PlaceOnPlane : MonoBehaviour
             Vector3 loosPos = Camera.main.transform.position;
             loosPos.y = 0;
             spawnedObject.transform.rotation = Quaternion.LookRotation(loosPos);
-        }
+        }*/
     }
 }
