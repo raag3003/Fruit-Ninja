@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Blade blade;
     [SerializeField] private Spawner spawner;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private Image fadeImage;
     [SerializeField] private GameObject gameOverScreen;
     public int health = 3;
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
         {
             Explode();
         }
+        hpText.text = "HP: " + health.ToString();
     }
 
     public void NewGame()
@@ -64,6 +66,9 @@ public class GameManager : MonoBehaviour
         score = 0;
         spawnerScript.maxSpawnDelay = 2f;
         scoreText.text = score.ToString();
+        health = 3;
+        spawner.bombChance = 0.05f;
+        
     }
 
     private void ClearScene()
