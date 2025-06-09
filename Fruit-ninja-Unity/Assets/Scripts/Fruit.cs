@@ -13,6 +13,7 @@ public class Fruit : MonoBehaviour
     private ParticleSystem juiceEffect;
 
     public int points = 1;
+    private bool slice = false;
 
     private void Awake()
     {
@@ -21,6 +22,17 @@ public class Fruit : MonoBehaviour
         juiceEffect = GetComponentInChildren<ParticleSystem>();
     }
 
+    private void Update()
+    {
+        if (transform.position.y <= -20f && !slice)
+        {
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.health--;
+                Destroy(gameObject);
+            }
+        }
+    }
     private void Slice(Vector3 direction, Vector3 position, float force)
     {
         GameManager.Instance.IncreaseScore(points);
@@ -32,6 +44,8 @@ public class Fruit : MonoBehaviour
         // Enable the sliced fruit
         sliced.SetActive(true);
         juiceEffect.Play();
+
+        slice = true;
 
         // Rotate the sliced parent to match the slice angle
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

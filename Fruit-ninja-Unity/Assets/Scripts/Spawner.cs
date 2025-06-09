@@ -113,9 +113,14 @@ public class Spawner : MonoBehaviour
     {
         if(maxSpawnDelay > minSpawnDelay)
         {
-            maxSpawnDelay = maxSpawnDelay - 0.1f;
-            bombChance = bombChance + 0.01f;
+            maxSpawnDelay = maxSpawnDelay - 0.3f;
         }
+        
+        if(bombChance < 0.34)
+        {
+            bombChance = bombChance + 0.1f;
+        }
+        
 
     }
 }
