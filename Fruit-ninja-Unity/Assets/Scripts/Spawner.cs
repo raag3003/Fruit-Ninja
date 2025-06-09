@@ -10,10 +10,11 @@ public class Spawner : MonoBehaviour
 
 
     [Header("GameObjects")]
+    public GameObject bombPrefab;
     public GameObject[] Emdrup;
     public GameObject[] fruitPrefabs;
-    public GameObject bombPrefab;
     public GameObject[] ZooAnimals;
+    public GameObject[] HCAndersen;
 
     [Header("Variables")]
     [Range(0f, 1f)]
@@ -73,12 +74,17 @@ public class Spawner : MonoBehaviour
             GameObject prefab;
 
             if (gps.IsWithinRadius(gps.userLat, gps.userLon, 55.72309f, 12.53921f, 1170))
-            {
                 prefab = Emdrup[Random.Range(0, Emdrup.Length)];
-            } else
-            {
+            
+            if (gps.IsWithinRadius(gps.userLat, gps.userLon, 10.371516095780429f, 55.37850881092491f, 1500))
+                prefab = ZooAnimals[Random.Range(0, ZooAnimals.Length)];
+
+            if(gps.IsWithinRadius(gps.userLat, gps.userLon, 10.387220429562625, 55.39429818231674, 500))
+                prefab = HCAndersen[Random.Range(0, HCAndersen.Length)];
+            
+            else
                 prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
-            }
+            
 
             if (Random.value < bombChance)
             {
