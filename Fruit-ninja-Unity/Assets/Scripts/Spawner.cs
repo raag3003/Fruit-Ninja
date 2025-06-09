@@ -8,11 +8,14 @@ public class Spawner : MonoBehaviour
     private TrackingGPS gps;
     private Collider spawnArea;
 
-    
 
+    [Header("GameObjects")]
     public GameObject[] Emdrup;
     public GameObject[] fruitPrefabs;
     public GameObject bombPrefab;
+    public GameObject[] ZooAnimals;
+
+    [Header("Variables")]
     [Range(0f, 1f)]
     public float bombChance = 0.05f;
 
